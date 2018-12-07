@@ -1,0 +1,149 @@
+swagger: '2.0'
+info:
+  description: 'This is a simple application for managing pairs.'
+  version: '1.0.0'
+  title: 'Pair service'
+  license:
+    name: 'Apache 2.0'
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+basePath: '/'
+tags:
+  - name: 'pair'
+    description: 'Testing your pairs'
+schemes:
+  - 'http'
+paths:
+  /pair:
+    get:
+      tags:
+        - 'pair'
+      summary: 'Get all pairs'
+      description: ''
+      responses:
+        200:
+          description: 'Successful operation'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Pair'
+        500:
+          description: 'Unexpected internal error'
+    post:
+      tags:
+        - 'pair'
+      summary: 'Creates a new pair'
+      description: ''
+      parameters:
+        - in: 'body'
+          name: 'body'
+          description: 'Pair object that needs to be added to the posted'
+          required: true
+          schema:
+            $ref: '#/definitions/PostPair'
+      responses:
+        201:
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Pair'
+        400:
+          description: 'Invalid input'
+        500:
+          description: 'Unexpected internal error'
+
+  /pair/{id}:
+    get:
+      tags:
+        - 'pair'
+      summary: 'Find pair by ID'
+      description: 'Returns a single pair'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: 'ID of pair to return'
+          required: true
+          type: 'string'
+      responses:
+        200:
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Pair'
+        404:
+          description: 'Pair not found'
+        500:
+          description: 'Unexpected internal error'
+    put:
+      tags:
+        - 'pair'
+      summary: 'Modify the pair'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: 'ID of pair to return'
+          required: true
+          type: 'string'
+        - in: 'body'
+          name: 'body'
+          description: 'Pair object that needs to be added to the posted'
+          required: true
+          schema:
+            $ref: '#/definitions/PostPair'
+      responses:
+        200:
+          description: 'Successful operation'
+          schema:
+            $ref: '#/definitions/Pair'
+        404:
+          description: 'Pair not found'
+        500:
+          description: 'Unexpected internal error'
+
+    delete:
+      tags:
+        - 'pair'
+      summary: 'Deletes a pair'
+      description: ''
+      parameters:
+        - name: 'id'
+          in: 'path'
+          description: 'Pair id to delete'
+          required: true
+          type: 'string'
+      responses:
+        200:
+          description: 'Successful operation'
+        404:
+          description: 'Pair not found'
+        500:
+          description: 'Unexpected internal error'
+
+  /reset:
+    get:
+      tags:
+        - 'pair'
+      summary: 'Deletes all pairs'
+      responses:
+        200:
+          description: 'Successful operation'
+
+definitions:
+  PostPair:
+    type: 'object'
+    properties:
+      key:
+        type: 'string'
+        description: The pair key.
+      value:
+        type: 'string'
+        description: The pair value.
+  Pair:
+    type: 'object'
+    properties:
+      id:
+        type: 'string'
+        description: The pair id.
+      key:
+        type: 'string'
+        description: The pair key.
+      value:
+        type: 'string'
+        description: The pair value.

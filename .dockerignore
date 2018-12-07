@@ -1,0 +1,7 @@
+bin
+vendor
+.gitignore
+*.png
+docker-compose.yml
+**/node_modules/
+README.md
