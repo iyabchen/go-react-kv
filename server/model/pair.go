@@ -19,7 +19,7 @@ type Pair struct {
 func NewPair(key string, value string) (*Pair, error) {
 	k := strings.TrimSpace(key)
 	v := strings.TrimSpace(value)
-	r, err := regexp.Compile("[a-zA-Z0-9]+")
+	r, err := regexp.Compile("^[a-zA-Z0-9]+$")
 	if err != nil {
 		panic(err)
 	}

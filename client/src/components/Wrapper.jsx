@@ -178,8 +178,8 @@ class Wrapper extends Component {
 }
 
 function isAlphanumeric(str) {
-  const regexp = /[a-zA-Z0-9]+/
-  return str.match(regexp)
+  const regexp = /^[a-zA-Z0-9]+$/
+  return regexp.test(str)
 }
 
 export default Wrapper
