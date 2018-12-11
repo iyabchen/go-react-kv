@@ -2,7 +2,7 @@ DOCKER_FILE=Dockerfile
 IMAGE_NAME=demo
 IMAGE_VER?=1.0
 ifdef DOCKER_BUILD_NO_CACHE
-	DOCKER_BUILD_OPT=--no_cache
+	DOCKER_BUILD_OPT=--no-cache
 endif
 
 PKG=github.com/iyabchen/go-react-kv/server
