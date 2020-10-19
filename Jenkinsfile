@@ -1,16 +1,9 @@
 pipeline {
-  agent {
-    dockerfile {
-      filename 'Dockerfile'
-    }
-
-  }
+  agent any
   stages {
-    stage('install') {
+    stage('build') {
       steps {
-        sh '''make clean
-make build
-make test'''
+        echo 'TestProject'
       }
     }
 
