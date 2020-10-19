@@ -22,7 +22,6 @@ FROM alpine:3.8
 WORKDIR /app
 COPY --from=go-builder /tmp/srv /app/
 COPY --from=node-builder /usr/src/app/build /app/client
-RUN apk add --update make
 # have to use CMD due to heroku limitation 
 # heroku runs with non-privilege user and has no write permission on local storage
 CMD ["/app/srv" ]
